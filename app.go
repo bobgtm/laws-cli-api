@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func startAPI() {
+func showLaws() {
 	reader := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Laws CLI > ")
@@ -52,10 +52,10 @@ func getCommands() map[string]cliCommand {
 			description: "displays a help message",
 			callback:    commandHelp,
 		},
-		"show me": {
+		"show": {
 			name:        "show me",
 			description: "shows most recent legislation",
-			callback:    commandShowMaster,
+			callback:    showBySession,
 		},
 	}
 }
