@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func showLaws() {
+func SartRepl(cfg *config) {
 	reader := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Laws CLI > ")
@@ -19,17 +19,18 @@ func showLaws() {
 		}
 
 		commandName := userInput[0]
-		command, exists := getCommands()[commandName]
-		if exists {
-			err := command.callback()
-			if err != nil {
-				fmt.Println(err)
-			}
-			continue
-		} else {
-			fmt.Println("Unknown Command")
+
+		avaialableCommands := getCommands()
+		command, ok := avaialableCommands[commandName]
+		if !ok {
+			fmt.Println("Invalid Command")
 			continue
 		}
+		err := command.callback(cfg)
+		if err != nil {
+			fmt.Println(err)
+		}
+
 	}
 }
 
@@ -42,7 +43,7 @@ func cleanInput(text string) []string {
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(cfg *config, args ...string) error
 }
 
 func getCommands() map[string]cliCommand {
@@ -52,10 +53,10 @@ func getCommands() map[string]cliCommand {
 			description: "displays a help message",
 			callback:    commandHelp,
 		},
-		"show": {
-			name:        "show me",
+		"recent": {
+			name:        "recent",
 			description: "shows most recent legislation",
-			callback:    showBySession,
+			callback:    callBackSession,
 		},
 	}
 }
