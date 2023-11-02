@@ -53,10 +53,15 @@ func getCommands() map[string]cliCommand {
 			description: "displays a help message",
 			callback:    commandHelp,
 		},
-		"recent": {
-			name:        "recent",
-			description: "shows most recent legislation",
-			callback:    callBackSession,
+		"sessions": {
+			name:        "sessions",
+			description: "shows first five most recent legislative sessions",
+			callback:    callBackLegSession,
+		},
+		"bills": {
+			name:        "bills",
+			description: "shows most recent bills",
+			callback:    callBackLegSession,
 		},
 	}
 }
