@@ -61,7 +61,7 @@ func getCommands() map[string]cliCommand {
 		"bills": {
 			name:        "bills",
 			description: "shows most recent bills",
-			callback:    callBackLegSession,
+			callback:    callBackBill,
 		},
 	}
 }

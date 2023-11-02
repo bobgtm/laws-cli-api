@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	apiKey = "fd72601a74ea1325d85b5a89bc11bcae"
 	url    = "https://api.legiscan.com/?key="
+	apiKey = "fd72601a74ea1325d85b5a89bc11bcae"
 )
 
 type Client struct {
